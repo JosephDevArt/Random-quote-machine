@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+// ----- SCSS MIXINS BELOW-----
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -webkit-box-align: $align;
+  -webkit-box-orient: vertical;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+}
+
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  -ms-flex-pack: $justify;
+  justify-content: $justify;
+}
+// ----- SCSS MIXINS ABOVE-----
+
+// ----- SCSS MEDIA-QUERIES BELOW -----
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// ----- SCSS MEDIA-QUERIES ABOVE -----
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(to right, #9796f0, #fbc7d4);
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  @include align-items(center);
+  @include justify-content(center);
+  @include mobile() {
+    // background: none;
+  }
+  .quote-box {
+    background-color: white;
+    width: 500px;
+    height: auto;
+    padding: 0;
+    border-radius: 5px;
+    padding: 1.5rem;
+    display: grid;
+    @include align-items(center);
+    @include mobile() {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      border-radius: none;
+    }
+    .quote_text {
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 600;
+      &:before {
+        content: open-quote;
+      }
+      &:after {
+        content: close-quote;
+      }
+      @include mobile() {
+        font-size: 1.4rem;
+        padding: 2rem;
+      }
+    }
+    .quote_text,
+    .author,
+    .tweet-quote,
+    .new-quote-btn {
+      transition: ease-out 0.3s;
+      margin: 1rem auto;
+    }
+    .author {
+      font-style: italic;
+      font-size: 1.2em;
+      @include mobile() {
+        font-size: 1rem;
+      }
+    }
+  }
+  // BUTTONS ( TWEET and NEW_QUOTE )
+  .links {
+    display: flex;
+    @include align-items(center);
+    @include justify-content(space-between);
+    .tweet-quote {
+      font-size: 3rem;
+    }
+    .new-quote-btn {
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
